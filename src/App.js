@@ -1,13 +1,32 @@
 //feature
-import React from "react"
+import data from './data.json'
+import React,{ Component } from 'react'
+import Products from './components/Products'
 
-function App() {
-  return (
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      products: data.products,
+      size: '',
+      sort: ''
+    }
+
+    console.log(data.products);
+  }
+
+
+  render(){
+    return (
       <div className="grid-container">
         <header>
           <a href="/">React Shopping Cart</a>
         </header>  
         <main>
+          <div className="content">
+            <div className="main"><Products products={this.state.products}></Products></div>
+            <div className="sidebar">Cart Items</div>
+          </div>
           Product List
         </main>
         <footer>
@@ -15,6 +34,8 @@ function App() {
         </footer>
       </div>
   );
+  }
 }
+
 
 export default App;
