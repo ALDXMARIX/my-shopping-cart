@@ -28,7 +28,7 @@ export default class Products extends Component {
               </div>
             </li>
           )): <p className="no-products">Loading products...</p>
-        }}
+        }
         </ul>
       </div>
     );
