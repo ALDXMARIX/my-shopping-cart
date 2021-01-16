@@ -4,6 +4,10 @@ import React,{ Component } from 'react'
 import Products from './components/Products'
 import Filter from './components/Filter';
 import Cart from './components/Cart';
+import store from './store/store'
+import { Provider } from 'react-redux'
+// import { connect, compose} from 'redux';
+// import { fetchProducts } from './actions/productActions'
 
 class App extends Component {
 
@@ -13,6 +17,7 @@ class App extends Component {
       size: '',
       sort: '',
   } 
+
     createOrder = (order) => {
       alert(`Need to save order for ${order.name}`);
       
@@ -74,7 +79,7 @@ class App extends Component {
   render() {
     console.log(this.state.size);
     return (
-
+      <Provider store={store}>
       <div className="grid-container">
         <header>
           <a href="/">React Shopping Cart</a>
@@ -88,9 +93,10 @@ class App extends Component {
                 filterProducts={this.filterProducts}
                 sortProducts={this.sortProducts}
               ></Filter>
-              {this.state.products.length? <Products products={this.state.products} addToCart={this.addToCart} />
+              <Products products={this.state.products} addToCart={this.addToCart} />
+              {/* {this.state.products.length? <Products products={this.state.products} addToCart={this.addToCart} />
                 : <p className="no-products">Sorry no available product for selected option...</p>
-              }
+              } */}
             </div>
             <div className="sidebar"><Cart cartItems={this.state.cartItems} removeFromCart={this.removeFromCart}
             createOrder={this.createOrder}
@@ -101,10 +107,12 @@ class App extends Component {
         <footer>
           All Rights Reserved
         </footer>
-      </div>
+        </div>
+      </Provider>
   );
   }
 
 }
 
 export default App;
+// connect((state) => (state) => ({ products: state.products }), { fetchProducts })
