@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import formatCurrency from "../utility/util";
 import Fade from "react-reveal/Fade"
-import Modal from "react-modal"
 export default class Cart extends Component {
 
     state = {
