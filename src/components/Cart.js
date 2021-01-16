@@ -9,7 +9,6 @@ export default class Cart extends Component {
         address: '',
         showCheckout: false,
     }    
-
     handleInput = (e) => {
         this.setState({[e.target.name]: e.target.value})
     }
@@ -23,8 +22,6 @@ export default class Cart extends Component {
         }
         this.props.createOrder(order);
     }
-
-    
     render() {
 
         const { cartItems } = this.props;
