@@ -67,6 +67,7 @@ class App extends Component {
           }
         )  
       }
+      return(<p className="no-products">Loading products...</p>)
     }
      
   
@@ -87,7 +88,9 @@ class App extends Component {
                 filterProducts={this.filterProducts}
                 sortProducts={this.sortProducts}
               ></Filter>
-              <Products products={this.state.products} addToCart={this.addToCart}/>
+              {this.state.products.length? <Products products={this.state.products} addToCart={this.addToCart} />
+                : <p className="no-products">Sorry no available product for selected option...</p>
+              }
             </div>
             <div className="sidebar"><Cart cartItems={this.state.cartItems} removeFromCart={this.removeFromCart}
             createOrder={this.createOrder}

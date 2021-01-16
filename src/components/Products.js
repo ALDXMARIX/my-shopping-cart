@@ -41,8 +41,8 @@ export default class Products extends Component {
                   </div>
                 </div>
               </li>
-            ))}: <p className="no-products">Loading products...</p>
-        }
+            ))} 
+        {/* <p className="no-products">Loading products...</p> */}
           </ul>
         </Fade>
         {product &&
