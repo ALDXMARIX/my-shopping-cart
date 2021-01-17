@@ -1,5 +1,5 @@
 //feature
-import data from './data.json'
+// import data from './data.json'
 import React,{ Component } from 'react'
 import Products from './components/Products'
 import Filter from './components/Filter';
@@ -12,10 +12,10 @@ import { Provider } from 'react-redux'
 class App extends Component {
 
     state = {
-      products: data.products,
+      // products: data.products,
       cartItems: localStorage.getItem("cartItems")?JSON.parse(localStorage.getItem("cartItems")):[],
-      size: '',
-      sort: '',
+      // size: '',
+      // sort: '',
   } 
 
     createOrder = (order) => {
@@ -42,38 +42,7 @@ class App extends Component {
       this.setState({ cartItems });
       localStorage.setItem("cartItems", JSON.stringify(cartItems));
     }
-    sortProducts = (e) => {
-    const sort = e.target.value;
-      this.setState({
-        sort: sort,
-        products: this.state.products.slice().sort((a, b) =>
-          sort === 'lowest' ?
-                    ((a.price > b.price) ? 1 : -1)
-                  : 'highest'?
-                    ((a.price < b.price) ? 1 : -1)
-                  : a._id > b._id ? 1 : -1  
-        ),
-      });
-    }    
-    filterProducts = (e) => {
 
-      if (e.target.value === '') {
-        this.setState({
-          size: e.target.value,
-          products: data.products
-          }
-        )        
-      } 
-      else {
-        this.setState(
-          {
-          size: e.target.value,
-          products: data.products.filter((product) => product.availableSizes.indexOf(e.target.value) >= 0),
-          }
-        )  
-      }
-      return(<p className="no-products">Loading products...</p>)
-    }
      
   
   render() {
@@ -87,13 +56,9 @@ class App extends Component {
         <main>
           <div className="content">
             <div className="main">
-              <Filter count={this.state.products.length}
-                size={this.state.size}
-                sort={this.state.sort}
-                filterProducts={this.filterProducts}
-                sortProducts={this.sortProducts}
+              <Filter 
               ></Filter>
-              <Products products={this.state.products} addToCart={this.addToCart} />
+              <Products addToCart={this.addToCart} />
               {/* {this.state.products.length? <Products products={this.state.products} addToCart={this.addToCart} />
                 : <p className="no-products">Sorry no available product for selected option...</p>
               } */}
